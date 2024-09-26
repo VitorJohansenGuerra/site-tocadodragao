@@ -1,0 +1,75 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1;
+    ;
+    padding: 1rem;
+    margin-bottom: 5px;
+}
+
+.listaGuiasDeBuilds ul {
+    display: none;
+    list-style: none;
+}
+
+.sublistaGuiasDeBuilds {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid gray;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    z-index: 1;
+}
+
+.mainlogo {
+    margin: 1rem;
+}
+
+
+.headerMenu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+.headerMenu li {
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.headerMenu li a {
+    width: 100%;
+    text-decoration: none;
+    color: #141414;
+}
+
+.headerMenu li a:hover {
+    text-decoration: underline;
+
+}
+
+@media only screen and (min-width: 768px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0;
+    }
+
+    .headerMenu {
+        flex-direction: row;
+        width: auto;
+    }
+
+    .headerMenu li {
+        font-size: 1.25rem;
+    }
+}

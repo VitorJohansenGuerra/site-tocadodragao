@@ -1,0 +1,36 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f1f1f1;
+    color: #141414;
+    margin-top: 5px;
+}
+
+.socialMedias {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: rgb(254 108 0);
+}
+
+.socialMedias li {
+    margin: 1rem;
+}
+
+.socialMediasImage {
+    width: 32px;
+    padding: 3px;
+}
+
+@media only screen and (min-width: 768px) {
+    .footer {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
