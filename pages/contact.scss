@@ -1,0 +1,57 @@
+form {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Estilo para inputs e textarea */
+  input,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--color-tertiary);
+    border-radius: 5px;
+    font-size: 1.1em;
+  }
+  
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+  
+  /* Estilo para radio buttons e labels */
+  label {
+    font-size: 1.1em;
+    color: var(--color-text);
+    display: inline-flex; /* Faz com que o input e o texto fiquem na mesma linha */
+    align-items: center; /* Alinha verticalmente o texto e o input */
+    margin-bottom: 10px;
+  }
+  
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+  fieldset {
+    border: none;
+    margin-bottom: 20px;
+  }
+  
+  legend {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: var(--color-secondary);
+  }
+  
+  /* Para alinhar os radio buttons verticalmente */
+  .fieldset-options label {
+    display: block; /* Faz com que cada label ocupe a linha toda */
+    margin-bottom: 10px; /* Adiciona espaçamento entre os labels */
+  }
+  

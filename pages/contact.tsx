@@ -5,6 +5,9 @@ const ContactForm = () => {
     const [formData, setFormData] = useState({
         name: '',
         userName: '',
+        role: '',
+        playerType: '',
+        playerActivity: ''
     });
 
     const [responseMessage, setResponseMessage] = useState('');
@@ -39,28 +42,72 @@ const ContactForm = () => {
         <div>
             <h1>Venha participar</h1>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="name">Nome:</label>
+                <div id="join">
+                    <label htmlFor="name"></label>
                     <input
                         type="text"
                         id="name"
                         name="name"
+                        placeholder='Seu Nome'
                         value={formData.name}
                         onChange={handleChange}
                         required
                     />
                 </div>
+
                 <div>
-                    <label htmlFor="userName">Nome de Usuário:</label>
+                    <label htmlFor="userName"></label>
                     <input
                         type="userName"
                         id="userName"
                         name="userName"
+                        placeholder='Nome de Usuário no Throne and Liberty'
                         value={formData.userName}
                         onChange={handleChange}
                         required
                     />
                 </div>
+
+                <div>
+                    <label htmlFor="role"></label>
+                    <input
+                        type="text"
+                        id="Role"
+                        name="role"
+                        placeholder='Qual Role do seu personagem?    ex:    Tanker, Healer ou DPS'
+                        value={formData.role}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label htmlFor="playerType"></label>
+                    <input
+                        type="playerType"
+                        id="playerType"
+                        name="playerType"
+                        placeholder='Que tipo de jogador você é?   ex:  Casual ou Hardcore'
+                        value={formData.playerType}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label htmlFor="playerActivity"></label>
+                    <input
+                        type="playerActivity"
+                        id="playerActivity"
+                        name="playerActivity"
+                        placeholder='Que tipo de atividade mais gosta de fazer?   ex:  PVP, PVE, Raids'
+                        value={formData.playerActivity}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+
                 <button type="submit">Send</button>
             </form>
             {responseMessage && <p>{responseMessage}</p>}

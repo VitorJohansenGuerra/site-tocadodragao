@@ -4,10 +4,10 @@ const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/128892076651944768
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        const { name, userName, } = req.body;
+        const { name, userName, role, playerType, playerActivity } = req.body;
 
         const discordPayload = {
-            content: `**Nova mensagem de contato!**\n**Nome**: ${name}\n**Nome de Usuário**: ${userName}`,
+            content: `**Nova mensagem!**\n**Nome**: ${name}\n**Nome de Usuário**: ${userName}\n**Role**: ${role}\n**Tipo de Jogador**: ${playerType}\n**Atividade**: ${playerActivity}`,
         };
 
         try {
