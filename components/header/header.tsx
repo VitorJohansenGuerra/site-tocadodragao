@@ -12,7 +12,7 @@ export default function Header() {
                     <li><Link href="#home">Inicio</Link></li>
                     <li><Link href="#about">Sobre</Link></li>
                     <li><Link href="#join">Participe</Link></li>
-                    <li><Link href="#https://discord.gg/vxwBY8E">Discord</Link></li>
+                    <li><Link href="https://discord.gg/vxwBY8E" target="_blank">Discord</Link></li>
                 </ul>
             </nav>
         </header>

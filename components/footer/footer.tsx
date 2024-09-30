@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '@/components/footer/footer.module.scss'
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -12,14 +13,19 @@ export default function Footer() {
 
             <ul className={styles.socialMedias}>
                 <li>
-                    <a href="https://www.instagram.com/vitorjguerra/" target="_blank">
+                    <Link href="https://www.instagram.com/vitorjguerra/" target="_blank">
                         <Image className={styles.socialMediasImage} src="/images/logo-instagram.svg" alt="Instagram" height={30} width={30} />
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="https://discord.gg/6kGCnpXrd6" target="_blank">
+                    <Link href="https://discord.gg/vxwBY8E" target="_blank">
                         <Image className={styles.socialMediasImage} src="/images/logo-discord.svg" alt="Discord" height={30} width={30} />
-                    </a>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="https://www.twitch.tv/lemaostream" target="_blank">
+                        <Image className={styles.socialMediasImage} src="/images/logo-twitch.svg" alt="Twitch" height={30} width={30} />
+                    </Link>
                 </li>
             </ul>
         </footer>
