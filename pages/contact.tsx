@@ -1,8 +1,19 @@
 "use client";
 import { useState } from "react";
+import { z } from "zod";
+
+const FormSchema = z.object({
+    name: z.string().min(3),
+    userName: z.string().min(3),
+    role: z.string().min(3),
+    playerType: z.string().min(3),
+    playerActivity: z.string().min(3),
+});
+
+type ContactForm = z.infer<typeof FormSchema>;
 
 const ContactForm = () => {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<ContactForm>({
         name: "",
         userName: "",
         role: "",
@@ -11,7 +22,8 @@ const ContactForm = () => {
     });
 
     const [responseMessage, setResponseMessage] = useState("");
-    const [formSubmitted, setFormSubmitted] = useState(false); // Estado para controlar a submissão do formulário
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [errors, setErrors] = useState<Partial<ContactForm>>({});
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -21,6 +33,19 @@ const ContactForm = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Validação com Zod
+        const result = FormSchema.safeParse(formData);
+        if (!result.success) {
+            const fieldErrors: Partial<ContactForm> = {};
+            result.error.errors.forEach((error) => {
+                if (error.path.length > 0) {
+                    fieldErrors[error.path[0] as keyof ContactForm] = error.message;
+                }
+            });
+            setErrors(fieldErrors);
+            return;
+        }
 
         const response = await fetch("/api/contact", {
             method: "POST",
@@ -33,7 +58,7 @@ const ContactForm = () => {
         if (response.ok) {
             const result = await response.json();
             setResponseMessage(result.message);
-            setFormSubmitted(true); // Atualiza o estado para indicar que o formulário foi enviado
+            setFormSubmitted(true);
         } else {
             const errorMessage = await response.text();
             console.error("Erro ao enviar:", errorMessage);
@@ -43,7 +68,6 @@ const ContactForm = () => {
 
     return (
         <div>
-            {/* Verifica se o formulário foi enviado para exibir a mensagem ou o formulário */}
             {!formSubmitted && <h1>Venha participar</h1>}
 
             {formSubmitted ? (
@@ -66,12 +90,13 @@ const ContactForm = () => {
                             onChange={handleChange}
                             required
                         />
+                        {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
                     </div>
 
                     <div>
                         <label htmlFor="userName"></label>
                         <input
-                            type="userName"
+                            type="text"
                             id="userName"
                             name="userName"
                             placeholder="Nome de Usuário no Throne and Liberty"
@@ -79,25 +104,27 @@ const ContactForm = () => {
                             onChange={handleChange}
                             required
                         />
+                        {errors.userName && <p style={{ color: "red" }}>{errors.userName}</p>}
                     </div>
 
                     <div>
                         <label htmlFor="role"></label>
                         <input
                             type="text"
-                            id="Role"
+                            id="role"
                             name="role"
                             placeholder="Qual Role do seu personagem? ex: Tanker, Healer ou DPS"
                             value={formData.role}
                             onChange={handleChange}
                             required
                         />
+                        {errors.role && <p style={{ color: "red" }}>{errors.role}</p>}
                     </div>
 
                     <div>
                         <label htmlFor="playerType"></label>
                         <input
-                            type="playerType"
+                            type="text"
                             id="playerType"
                             name="playerType"
                             placeholder="Que tipo de jogador você é? ex: Casual ou Hardcore"
@@ -105,12 +132,13 @@ const ContactForm = () => {
                             onChange={handleChange}
                             required
                         />
+                        {errors.playerType && <p style={{ color: "red" }}>{errors.playerType}</p>}
                     </div>
 
                     <div>
                         <label htmlFor="playerActivity"></label>
                         <input
-                            type="playerActivity"
+                            type="text"
                             id="playerActivity"
                             name="playerActivity"
                             placeholder="Que tipo de atividade mais gosta de fazer? ex: PVP, PVE, Raids"
@@ -118,13 +146,13 @@ const ContactForm = () => {
                             onChange={handleChange}
                             required
                         />
+                        {errors.playerActivity && <p style={{ color: "red" }}>{errors.playerActivity}</p>}
                     </div>
 
                     <button type="submit">Enviar</button>
                 </form>
             )}
 
-            {/* Exibe a mensagem de erro ou sucesso */}
             {responseMessage && !formSubmitted && <p>{responseMessage}</p>}
         </div>
     );
